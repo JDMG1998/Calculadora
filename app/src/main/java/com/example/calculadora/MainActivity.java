@@ -52,12 +52,27 @@ public class MainActivity extends AppCompatActivity {
 
         btnResta = findViewById(R.id.btnResta);
         btnMulti = findViewById(R.id.btnMulti);
+
         btnDiv = findViewById(R.id.btnDiv);
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resultado.setText(div(Double.parseDouble(numeroA.getText().toString()), Double.parseDouble(numeroB.getText().toString()))+"");
+            }
+        });
 
     }
 
     public int suma(int a, int b){
         return a+b;
+    }
+
+    public String div(double a, double b){
+        if (b == 0){
+            return "No se puede dividir entre 0.";
+        } else {
+            return String.valueOf(a/b);
+        }
     }
 
 }
