@@ -46,12 +46,25 @@ public class MainActivity extends AppCompatActivity {
         btnSuma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resultado.setText(suma(Integer.parseInt(numeroA.getText().toString()), Integer.parseInt(numeroB.getText().toString()))+"");
+                resultado.setText(Sumar(Integer.parseInt(numeroA.getText().toString()), Integer.parseInt(numeroB.getText().toString()))+"");
             }
         });
 
         btnResta = findViewById(R.id.btnResta);
+        btnResta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resultado.setText(Restar(Integer.parseInt(numeroA.getText().toString()), Integer.parseInt(numeroB.getText().toString()))+"");
+            }
+        });
+
         btnMulti = findViewById(R.id.btnMulti);
+        btnMulti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resultado.setText(Multiplicar(Integer.parseInt(numeroA.getText().toString()), Integer.parseInt(numeroB.getText().toString()))+"");
+            }
+        });
 
         btnDiv = findViewById(R.id.btnDiv);
         btnDiv.setOnClickListener(new View.OnClickListener() {
@@ -63,8 +76,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public int suma(int a, int b){
+    public int Sumar(int a, int b){
         return a+b;
+    }
+
+    public int Restar(int a, int b){
+        return a-b;
+    }
+
+    public int Multiplicar(int a, int b){
+        return a*b;
     }
 
     public String div(double a, double b){
