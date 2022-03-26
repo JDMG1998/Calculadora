@@ -119,5 +119,73 @@ public class MainActivity extends AppCompatActivity {
         esPermitidoOperador = false;
     }
 
+    private void AgregarAExpresion(String value){
+        expresionIngresada.setText(expresionIngresada.getText() + value);
+    }
+
+    private String EliminarUltimoCaracter(String cadenaAModificar){
+        String cadenaResultado = "";
+        if (cadenaAModificar.length() > 0) {
+            cadenaResultado = cadenaAModificar.substring(0, cadenaAModificar.length() - 1);
+        }
+
+        return cadenaResultado;
+    }
+
+    /**
+     * Este método recibe una cadena de texto la cual es analizada y ejecutada.
+     * @param expresionAEvaluar
+     */
+    private double EvaluarExpresion(String expresionAEvaluar){
+        char operador;
+        double operando1 = 0;
+        double operando2 = 0;
+        int posicionOperador = 0;
+
+        String[] operandosDeLaExpresion = expresionAEvaluar.split("[-+x/]");
+
+        if (operandosDeLaExpresion.length > 1){
+            operando1 = new Double(operandosDeLaExpresion[0]);
+            posicionOperador += operandosDeLaExpresion[0].length();
+            for (int i = 0; i < operandosDeLaExpresion.length; i++){
+                if(i > 0){
+                    operador = expresionIngresada.getText().toString().charAt(posicionOperador);
+                    operando2 = new Double(operandosDeLaExpresion[i]);
+                    operando1 = EjecutarOperacion(operador, operando1, operando2);
+                    posicionOperador += operandosDeLaExpresion[i].length() + 1;
+                }
+            }
+        }
+
+        return operando1;
+    }
+
+    /**
+     * Este método permite ejecutar la operación aritmética especificada en el parámetro Operador a dos operandos.
+     *  Los valores permitidos en el parámetro Operador son: +, -, *, /
+     * @param Operador Operador a aplicar a los operandos. Valores permitidos: +, -, *, /
+     * @param Operando1
+     * @param Operando2
+     * @return
+     */
+    private double EjecutarOperacion(char Operador, double Operando1, double Operando2){
+        double resultado = 0;
+        switch (Operador)
+        {
+            case '+':   resultado = Operando1 + Operando2;
+                break;
+            case '-':   resultado = Operando1 - Operando2;
+                break;
+            case 'x':   resultado = Operando1 * Operando2;
+                break;
+            case '/':   resultado = Operando1 / Operando2;
+                break;
+            default:
+                break;
+        }
+
+        return resultado;
+    }
+
 
 }
