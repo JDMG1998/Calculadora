@@ -8,92 +8,116 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
+
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnSuma;
-    private Button btnResta;
-    private Button btnMulti;
-    private Button btnDiv;
-    private Button btnLimp;
+    public TextView expresionIngresada;
+    public TextView resultadoOperacion;
 
-    private TextView resultado;
-
-    private EditText numeroA;
-    private EditText numeroB;
-
-
+    public double primerOperando;
+    public String operadorActual = "";
+    public boolean esPermitidoOperador = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        resultado = findViewById(R.id.resultado);
-        numeroA = findViewById(R.id.numeroA);
-        numeroB = findViewById(R.id.numeroB);
+        expresionIngresada = findViewById(R.id.expresionIngresada);
+        resultadoOperacion = findViewById(R.id.resultadoOperacion);
 
-        btnLimp = findViewById(R.id.btnLimp);
-        btnLimp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resultado.setText("0");
-                numeroA.setText("");
-                numeroB.setText("");
-            }
-        });
-
-        btnSuma = findViewById(R.id.btnSuma);
-        btnSuma.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resultado.setText(Sumar(Integer.parseInt(numeroA.getText().toString()), Integer.parseInt(numeroB.getText().toString()))+"");
-            }
-        });
-
-        btnResta = findViewById(R.id.btnResta);
-        btnResta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resultado.setText(Restar(Integer.parseInt(numeroA.getText().toString()), Integer.parseInt(numeroB.getText().toString()))+"");
-            }
-        });
-
-        btnMulti = findViewById(R.id.btnMulti);
-        btnMulti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resultado.setText(Multiplicar(Integer.parseInt(numeroA.getText().toString()), Integer.parseInt(numeroB.getText().toString()))+"");
-            }
-        });
-
-        btnDiv = findViewById(R.id.btnDiv);
-        btnDiv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resultado.setText(div(Double.parseDouble(numeroA.getText().toString()), Double.parseDouble(numeroB.getText().toString()))+"");
-            }
-        });
-
-    }
-
-    public int Sumar(int a, int b){
-        return a+b;
-    }
-
-    public int Restar(int a, int b){
-        return a-b;
-    }
-
-    public int Multiplicar(int a, int b){
-        return a*b;
-    }
-
-    public String div(double a, double b){
-        if (b == 0){
-            return "No se puede dividir entre 0.";
-        } else {
-            return String.valueOf(a/b);
+        // Se asocia el manejador de eventos a cada uno de los botones numéricos.
+        for (int i = 0; i < 10; i++) {
+            int btn_ID = getResources().getIdentifier("btn_" + i, "id", getPackageName());
+            findViewById(btn_ID).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    btn_Numerico_onClick(view);
+                }
+            });
         }
+
+        findViewById(R.id.btn_Punto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                esPermitidoOperador = false;
+                AgregarAExpresion(".");
+            }
+        });
+
+        findViewById(R.id.btn_Sumar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_Operador_onClick(view);
+            }
+        });
+
+        findViewById(R.id.btn_Restar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_Operador_onClick(view);
+            }
+        });
+
+        findViewById(R.id.btn_Multiplicar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_Operador_onClick(view);
+            }
+        });
+
+        findViewById(R.id.btn_Dividir).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_Operador_onClick(view);
+            }
+        });
+
+        findViewById(R.id.btn_BorrarCaracter).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                expresionIngresada.setText(EliminarUltimoCaracter(expresionIngresada.getText().toString()));
+                double resultadoExpresion = EvaluarExpresion(expresionIngresada.getText().toString());
+                resultadoOperacion.setText(Double.toString(resultadoExpresion));
+
+                if(expresionIngresada.getText().toString().length() > 0){
+                    char ultimoCaracter = expresionIngresada.getText().toString().charAt(expresionIngresada.getText().toString().length() -1);
+                    esPermitidoOperador = Character.isDigit(ultimoCaracter);
+                }
+            }
+        });
+
+        findViewById(R.id.btn_Limpiar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                primerOperando = 0;
+                expresionIngresada.setText("");
+                resultadoOperacion.setText("");
+                esPermitidoOperador = false;
+            }
+        });
     }
+
+    public void btn_Numerico_onClick(View view) {
+        int valor = new Integer(((MaterialButton) view).getText().toString());
+        esPermitidoOperador = true;
+        AgregarAExpresion(Integer.toString(valor));
+        double resultadoExpresion = EvaluarExpresion(expresionIngresada.getText().toString());
+        resultadoOperacion.setText(Double.toString(resultadoExpresion));
+    }
+
+    public void btn_Operador_onClick(View view){
+        if(operadorActual.length() == 0 && expresionIngresada.getText().toString().length() > 0){
+            primerOperando = new Double(expresionIngresada.getText().toString());
+        }
+        operadorActual = ((MaterialButton) view).getText().toString();
+        if(esPermitidoOperador) {
+            AgregarAExpresion(operadorActual);
+        }
+
+        esPermitidoOperador = false;
+    }
+
 
 }
