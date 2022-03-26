@@ -185,12 +185,6 @@
             android:layout_weight="1"
             android:text="LIMPIAR" />
 
-        <Button
-            android:id="@+id/btn_Resultado"
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:layout_weight="1"
-            android:text="=" />
     </LinearLayout>
 
 </LinearLayout>
