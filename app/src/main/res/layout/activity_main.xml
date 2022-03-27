@@ -12,20 +12,20 @@
     android:paddingBottom="16dp"
     tools:context=".MainActivity">
 
-
     <TextView
         android:id="@+id/expresionIngresada"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:hint="0.0"
         android:textSize="30sp" />
-
 
     <TextView
         android:id="@+id/resultadoOperacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:hint="0.0"
         android:textSize="30sp" />
 
     <LinearLayout
@@ -38,6 +38,7 @@
             android:id="@+id/btn_7"
             android:layout_width="wrap_content"
             android:layout_height="68dp"
+            android:backgroundTint="#991826"
             android:text="7" />
 
         <Button
@@ -46,12 +47,14 @@
             android:layout_height="68dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:backgroundTint="#991826"
             android:text="8" />
 
         <Button
             android:id="@+id/btn_9"
             android:layout_width="wrap_content"
             android:layout_height="68dp"
+            android:backgroundTint="#991826"
             android:text="9" />
 
         <Button
@@ -60,6 +63,7 @@
             android:layout_height="68dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:backgroundTint="#991826"
             android:text="+" />
 
     </LinearLayout>
@@ -74,6 +78,7 @@
             android:id="@+id/btn_4"
             android:layout_width="wrap_content"
             android:layout_height="68dp"
+            android:backgroundTint="#991826"
             android:text="4" />
 
         <Button
@@ -82,12 +87,14 @@
             android:layout_height="68dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:backgroundTint="#991826"
             android:text="5" />
 
         <Button
             android:id="@+id/btn_6"
             android:layout_width="wrap_content"
             android:layout_height="68dp"
+            android:backgroundTint="#991826"
             android:text="6" />
 
         <Button
@@ -96,6 +103,7 @@
             android:layout_height="68dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:backgroundTint="#991826"
             android:text="-" />
 
     </LinearLayout>
@@ -110,6 +118,7 @@
             android:id="@+id/btn_1"
             android:layout_width="wrap_content"
             android:layout_height="68dp"
+            android:backgroundTint="#991826"
             android:text="1" />
 
         <Button
@@ -118,12 +127,14 @@
             android:layout_height="68dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:backgroundTint="#991826"
             android:text="2" />
 
         <Button
             android:id="@+id/btn_3"
             android:layout_width="wrap_content"
             android:layout_height="68dp"
+            android:backgroundTint="#991826"
             android:text="3" />
 
         <Button
@@ -132,6 +143,7 @@
             android:layout_height="68dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:backgroundTint="#991826"
             android:text="x" />
 
     </LinearLayout>
@@ -146,7 +158,8 @@
             android:id="@+id/btn_BorrarCaracter"
             android:layout_width="wrap_content"
             android:layout_height="68dp"
-            android:text="Borrar" />
+            android:backgroundTint="#991826"
+            android:text="C" />
 
         <Button
             android:id="@+id/btn_0"
@@ -154,12 +167,14 @@
             android:layout_height="68dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:backgroundTint="#991826"
             android:text="0" />
 
         <Button
             android:id="@+id/btn_Punto"
             android:layout_width="wrap_content"
             android:layout_height="68dp"
+            android:backgroundTint="#991826"
             android:text="." />
 
         <Button
@@ -168,6 +183,7 @@
             android:layout_height="68dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:backgroundTint="#991826"
             android:text="/" />
 
     </LinearLayout>
@@ -183,6 +199,7 @@
             android:layout_height="68dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:backgroundTint="#991826"
             android:text="LIMPIAR" />
 
     </LinearLayout>
