@@ -13,12 +13,24 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="Valores Ingresados:" />
+
+    <TextView
         android:id="@+id/expresionIngresada"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:hint="0.0"
         android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="Resultado:" />
 
     <TextView
         android:id="@+id/resultadoOperacion"
